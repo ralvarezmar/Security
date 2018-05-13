@@ -13,25 +13,18 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-
-//gcc -o hash64 -Wall hash64.c -lssl -lcrypto
-
 enum{
 	Ksz = 32,
 	hashsz= 32,
 	N=1000,
 };
 
-
 void first_hash(char* argumento,unsigned char hash[]){
-
 	SHA256_CTX ctx;
-
 	SHA256_Init(&ctx);
   SHA256_Update(&ctx, argumento,strlen(argumento));
 	SHA256_Final(hash,&ctx);
 }
-
 
 void writebase64(unsigned char *firma){
  BIO *bio;
@@ -47,9 +40,7 @@ void writebase64(unsigned char *firma){
 
 int main(int argc, char* argv[]){
 	unsigned char hash[SHA_DIGEST_LENGTH];
-
 	first_hash(argv[1],hash);
-  writebase64(hash);
-
+	writebase64(hash);
 	exit(EXIT_SUCCESS);
 }
