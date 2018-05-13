@@ -20,11 +20,11 @@ void first_hash(int argc, char* argv[],unsigned char k_ipad[],unsigned char hash
 	int buffer_len=0;
 	archivo=open(argv[1],O_RDONLY);
 	SHA1_Init(&ctx);
-  SHA1_Update(&ctx, k_ipad, Ksz);
+	SHA1_Update(&ctx, k_ipad, Ksz);
 	while ((buffer_len= read(archivo,&buffer,N))>0){
-    		SHA1_Update(&ctx, buffer,buffer_len);
+		SHA1_Update(&ctx, buffer,buffer_len);
 	}
-  close(archivo);
+	close(archivo);
 	SHA1_Final(hash,&ctx);
 }
 
@@ -42,12 +42,12 @@ void hmac(int argc, char* argv[],unsigned char hash[]){
 	unsigned char k_ipad[Ksz];
 	unsigned char k_opad[Ksz];
 	archivo=open(argv[2],O_RDONLY);
-  key_len=read(archivo,key,Ksz);
+	key_len=read(archivo,key,Ksz);
 	close(archivo);
 	memset(k_ipad,0, Ksz);
-  memset(k_opad,0, Ksz);
- 	memcpy(k_ipad,key,key_len);
-  memcpy(k_opad,key,key_len);
+	memset(k_opad,0, Ksz);
+	memcpy(k_ipad,key,key_len);
+	memcpy(k_opad,key,key_len);
 	for (int i=0; i<Ksz; i++) {
 		k_ipad[i] ^= 0x36;
 		k_opad[i] ^= 0x5c;

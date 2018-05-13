@@ -71,15 +71,15 @@ unsigned char* padding(char* fichero){
 }
 
 	int comprobarFirma(unsigned char *vfirma,int argc, char* argv[]){
-	  unsigned char* hashtotal=malloc(HL);
-	  hashtotal = padding(argv[3]);
-		for(int x=0;x<K;x++){
-			if(hashtotal[x]!=vfirma[x]){
-				return 0;
+		unsigned char* hashtotal=malloc(HL);
+		hashtotal = padding(argv[3]);
+			for(int x=0;x<K;x++){
+				if(hashtotal[x]!=vfirma[x]){
+					return 0;
+				}
 			}
-		}
-	  return 1;
-}
+		return 1;
+	}
 
 void readbase64(unsigned char *input, int length,int argc, char* argv[]) {
   BIO *b64, *bio;

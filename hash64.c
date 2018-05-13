@@ -22,7 +22,7 @@ enum{
 void first_hash(char* argumento,unsigned char hash[]){
 	SHA256_CTX ctx;
 	SHA256_Init(&ctx);
-  SHA256_Update(&ctx, argumento,strlen(argumento));
+	SHA256_Update(&ctx, argumento,strlen(argumento));
 	SHA256_Final(hash,&ctx);
 }
 
